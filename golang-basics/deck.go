@@ -14,7 +14,7 @@ type deck []string
 func newDeck() deck {
 	cards := deck{}
 
-    cardSuits := []string{"Spades", "Dialonds", "Hearts"}
+	cardSuits := []string{"Spades", "Dialonds", "Hearts", "Clubs"}
 	cardValues := []string{"Ace", "Two", "Three", "Four"}
 
 	for _, suit := range cardSuits {
@@ -22,7 +22,6 @@ func newDeck() deck {
 			cards = append(cards, value+" of "+suit)
 		}
 	}
-
 
 	return cards
 }
@@ -34,7 +33,7 @@ func (d deck) print() {
 }
 
 func deal(d deck, handSize int) (deck, deck) {
-   return d[:handSize], d[handSize:]
+	return d[:handSize], d[handSize:]
 }
 
 func (d deck) toString() string {
@@ -46,16 +45,16 @@ func (d deck) saveToFile(filename string) error {
 }
 
 func newDeckFromFile(filename string) deck {
-  bs, err := os.ReadFile(filename)
-  if err != nil {
-	// Option #1 - log the error and return a call to newDeck()
-	// Option #2 - Log the error and entirely quit the program
-	fmt.Println("Error:", err)
-	os.Exit(1)
-  }
+	bs, err := os.ReadFile(filename)
+	if err != nil {
+		// Option #1 - log the error and return a call to newDeck()
+		// Option #2 - Log the error and entirely quit the program
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
 
-  s := strings.Split(string(bs), ",")
-  return deck(s)
+	s := strings.Split(string(bs), ",")
+	return deck(s)
 }
 
 func (d deck) shuffle() {
@@ -63,8 +62,8 @@ func (d deck) shuffle() {
 	r := rand.New(source)
 
 	for i := range d {
-       newPosition := r.Intn(len(d) - 1)
+		newPosition := r.Intn(len(d) - 1)
 
-	   d[i], d[newPosition] = d[newPosition], d[i]
+		d[i], d[newPosition] = d[newPosition], d[i]
 	}
 }
