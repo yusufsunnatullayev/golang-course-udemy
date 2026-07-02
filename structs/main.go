@@ -40,7 +40,8 @@ func main() {
 	}
 
 	jim.updateName("jimmy")
-	jim.print()
+	// jim.print()
+
 }
 
 func (p *person) updateName(newFirstName string) {
